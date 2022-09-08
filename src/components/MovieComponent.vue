@@ -2,8 +2,8 @@
   <div class="container">
     <NavBar />
     <form @submit.prevent="searchMovie(1)" class="form__container">
-      <input type="text" placeholder="Enter movie title..." v-model="title" required>
-      <button type="button">Search</button>
+      <input type="text" placeholder="Enter movie title..." v-model="title">
+      <button type="submit">Search</button>
     </form>
     <div class="loader__container" v-if="isLoading">
       <div class="lds-dual-ring"></div>
