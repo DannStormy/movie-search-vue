@@ -2,23 +2,22 @@
   <div class="container">
     <NavBar />
     <form @submit.prevent="searchMovie(1)" class="form__container">
-      <input type="text" placeholder="Enter movie title..." v-model="title">
+      <input type="text" placeholder="Enter movie title..." v-model="title" required>
       <button type="button">Search</button>
     </form>
     <div class="loader__container" v-if="isLoading">
       <div class="lds-dual-ring"></div>
     </div>
-    <div class="image__div" v-if="movieList.length === 0 && !isLoading">
-      <img class="img" src="@/assets/Group15.svg" alt="image">
-    </div>
     <div class="error__container">
       <p class="error">{{error}}</p>
+    </div>
+    <div class="image__div" v-if="movieList.length === 0 && !isLoading">
+      <img class="img" src="@/assets/Group15.png" alt="image">
     </div>
     <div class="movies" v-if="!isLoading">
       <div class="movieList" v-for="movie in movieList" :key="movie.imdbID">
         <div class="movie__details">
-          <div class="not__found" @click="getMovieID(movie.imdbID)" v-if="movie.Poster === 'N/A'">
-          </div>
+          <div class="not__found" @click="getMovieID(movie.imdbID)" v-if="movie.Poster === 'N/A'"></div>
           <img @click="getMovieID(movie.imdbID)" :src="movie.Poster" alt="movie-image" v-else>
           <p class="title">{{movie.Title}}</p>
           <div class="type__year">
@@ -259,5 +258,6 @@ export default {
     text-align: center;
     font-size: 20px;
     color: #C53939;
+    margin-top: 20px;
   }
 </style>

@@ -6,10 +6,11 @@
     </div>
     <div class="movie__container" v-if="movie">
       <div class="movie__image">
-        <img :src=movie.Poster alt="movie_image">
+        <div class="not__found" v-if="movie.Poster === 'N/A'"></div>
+        <img :src=movie.Poster alt="movie_image" v-else>
       </div>
       <div class="movie__info">
-        <button @click="goBack" class="back"><img src="@/assets/back.svg" alt="back">   Back</button>
+        <button @click="goBack" class="back"><img src="@/assets/back.svg" alt="back">Back</button>
         <p class="movie__title">{{movie.Title}}</p>
         <div class="type__year">
             <p class="type">{{movie.Type}}</p>
@@ -82,6 +83,7 @@ export default {
 
   .movie__image img{
     height: 429px;
+    width: 289px;
   }
 
   .back {
@@ -95,7 +97,9 @@ export default {
     margin-bottom: 20px;
     cursor: pointer;
   }
-
+  .back img{
+    margin-right: 12px;
+  }
   .movie__title{
     font-weight: 700;
     font-size: 40px;
@@ -111,7 +115,7 @@ export default {
     margin-bottom: 16px;
   }
 
-  .actors__container, .genre__container, .imbd__container {
+  .actors__container, .genre__container, .imbd__container, .movie__plot {
     justify-content: normal;
   }
 

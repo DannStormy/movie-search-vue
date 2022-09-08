@@ -32,6 +32,13 @@ export default {
     }
 
     nav p{
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 21px;
       cursor: pointer;
+      transition: all 0.3s;
+    }
+    nav p:hover{
+      transform: scale(1.2);
     }
 </style>
