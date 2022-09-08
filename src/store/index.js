@@ -7,7 +7,7 @@ export default createStore({
     movieList: [],
     error: null,
     isLoading: false,
-    totalResults: 1
+    totalResults: 1,
   },
   getters: {
   },
@@ -16,7 +16,7 @@ export default createStore({
       state.movieList = movieList
     },
     SET_ERROR(state, error){
-      state.error = error.message
+      state.error = error
     },
     UPDATE_SINGLE_MOVIE(state, movie){
       state.movie = movie
@@ -38,16 +38,19 @@ export default createStore({
         context.state.isLoading = true
         const response = await search(title, page)
         const data = response.data
+        console.log(data)
         if (data.Response === "True") {
           const movieList = data.Search
           const resultCount = data.totalResults
           context.commit("SET_TOTAL_RESULTS", resultCount)
           context.commit('UPDATE_LIST', movieList)
+          context.commit("SET_ERROR", null)
         }else{
+          context.commit("SET_ERROR", data.Error)
           context.commit('UPDATE_LIST', [])
         }
       }catch(err){
-        console.log(err)
+        console.log("This is the error: ", err.error)
       }finally{
         context.state.isLoading = false
       }
@@ -56,7 +59,6 @@ export default createStore({
       try {
         context.state.isLoading = true
         const response = await searchSingleMovie(movieID)
-        console.log("This is the result", response.data)
         const movie = response.data
         context.commit('UPDATE_SINGLE_MOVIE', movie)
       } catch(err) {

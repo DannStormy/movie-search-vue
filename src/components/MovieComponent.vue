@@ -11,7 +11,10 @@
     <div class="image__div" v-if="movieList.length === 0 && !isLoading">
       <img class="img" src="@/assets/Group15.svg" alt="image">
     </div>
-    <div class="movies">
+    <div class="error__container">
+      <p class="error">{{error}}</p>
+    </div>
+    <div class="movies" v-if="!isLoading">
       <div class="movieList" v-for="movie in movieList" :key="movie.imdbID">
         <div class="movie__details">
           <div class="not__found" @click="getMovieID(movie.imdbID)" v-if="movie.Poster === 'N/A'">
@@ -60,7 +63,7 @@ export default {
         ...mapActions(["updateList", "getAllMovies", "clearList"])
     },
     computed: {
-        ...mapState(["movieList", "isLoading", 'totalResults']),
+        ...mapState(["movieList", "isLoading", 'totalResults', 'error']),
         allPages(){
           return Math.ceil(this.totalResults / 10);
         }
@@ -251,5 +254,10 @@ export default {
   }
   .active{
       background: #C53939
+  }
+  .error__container{
+    text-align: center;
+    font-size: 20px;
+    color: #C53939;
   }
 </style>
