@@ -56,6 +56,7 @@ export default createStore({
       try {
         context.state.isLoading = true
         const response = await searchSingleMovie(movieID)
+        console.log("This is the result", response.data)
         const movie = response.data
         context.commit('UPDATE_SINGLE_MOVIE', movie)
       } catch(err) {

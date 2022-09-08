@@ -20,7 +20,7 @@
             <p class="type">{{movie.Type}}</p>
             <p class="dot"></p>
             <p>{{movie.Year}}</p>
-        </div>
+          </div>
       </div>
     </div>
     </div>
@@ -89,10 +89,10 @@ export default {
   }
   body{
     background-color: #242222;
-    background-image: url("@/assets/new-york-27538071.svg");
+    /* background-image: url("@/assets/new-york-27538071.svg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position:bottom;
+    background-position:bottom; */
   }
   .form__container{
     width: 507px;
@@ -177,7 +177,7 @@ export default {
   }
   .type__year{
     display: flex;
-    width: 130px;
+    width: 160px;
     justify-content: space-between;
     align-items: center;
     font-weight: 400;
@@ -218,7 +218,7 @@ export default {
 }
   .pages {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
     padding: 20px;
