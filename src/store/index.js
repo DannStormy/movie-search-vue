@@ -36,7 +36,7 @@ export default createStore({
       const {title, page} = options
       try {
         context.state.isLoading = true
-        const response = await search(title, page)
+        const response = await search(title.trim(), page)
         const data = response.data
         console.log(data)
         if (data.Response === "True") {
