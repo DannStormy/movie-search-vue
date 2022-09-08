@@ -1,10 +1,13 @@
 import { createStore } from 'vuex'
-import { search } from '@/movie'
+import { search, searchSingleMovie } from '@/movie'
 
 export default createStore({
   state: {
+    movie: null,
     movieList: [],
-    error: null
+    error: null,
+    isLoading: false,
+    totalResults: 1
   },
   getters: {
   },
@@ -14,6 +17,12 @@ export default createStore({
     },
     SET_ERROR(state, error){
       state.error = error.message
+    },
+    UPDATE_SINGLE_MOVIE(state, movie){
+      state.movie = movie
+    },
+    SET_TOTAL_RESULTS(state, count){
+      state.totalResults = parseInt(count)
     }
   },
   actions: {
@@ -23,18 +32,36 @@ export default createStore({
     clearList(context){
       context.commit('UPDATE_LIST', [])
     },
-    async getAllMovies(context, title){
+    async getAllMovies(context, options){
+      const {title, page} = options
       try {
-        const response = await search(title)
+        context.state.isLoading = true
+        const response = await search(title, page)
         const data = response.data
         if (data.Response === "True") {
           const movieList = data.Search
+          const resultCount = data.totalResults
+          context.commit("SET_TOTAL_RESULTS", resultCount)
           context.commit('UPDATE_LIST', movieList)
         }else{
           context.commit('UPDATE_LIST', [])
         }
       }catch(err){
         console.log(err)
+      }finally{
+        context.state.isLoading = false
+      }
+    },
+    async getSingleMovie(context, movieID){
+      try {
+        context.state.isLoading = true
+        const response = await searchSingleMovie(movieID)
+        const movie = response.data
+        context.commit('UPDATE_SINGLE_MOVIE', movie)
+      } catch(err) {
+        console.log(err)
+      } finally {
+        context.state.isLoading = false
       }
     }
   },
