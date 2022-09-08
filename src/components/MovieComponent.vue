@@ -14,7 +14,9 @@
     <div class="movies">
       <div class="movieList" v-for="movie in movieList" :key="movie.imdbID">
         <div class="movie__details">
-          <img @click="getMovieID(movie.imdbID)" :src="movie.Poster" alt="movie-image">
+          <div class="not__found" @click="getMovieID(movie.imdbID)" v-if="movie.Poster === 'N/A'">
+          </div>
+          <img @click="getMovieID(movie.imdbID)" :src="movie.Poster" alt="movie-image" v-else>
           <p class="title">{{movie.Title}}</p>
           <div class="type__year">
             <p class="type">{{movie.Type}}</p>
@@ -24,7 +26,7 @@
       </div>
     </div>
     </div>
-    <div class="pages">
+    <div class="pages" v-if="movieList.length > 0">
         <div :class="['page', {'active': page === currentPage}]" v-for="page in allPages" :key="page" @click="currentPage = page">
           {{page}}
         </div>
@@ -89,10 +91,10 @@ export default {
   }
   body{
     background-color: #242222;
-    /* background-image: url("@/assets/new-york-27538071.svg");
+    background-image: url("@/assets/new-york-27538071.svg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position:bottom; */
+    background-position:bottom;
   }
   .form__container{
     width: 507px;
@@ -101,6 +103,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
+    position: sticky;
+    z-index: 1;
+    top: 30px;
   }
   .form__container input{
     background: #313030;
@@ -149,7 +154,7 @@ export default {
   .movieList{
     width: 200px;
   }
-  .movieList img{
+  .movieList img, .not__found{
     width: 200px;
     height: 298.78px;
     margin-bottom: 13px;
@@ -157,9 +162,15 @@ export default {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
   }
+  .not__found {
+    background-color: grey;
+  }
   .movieList img:hover {
     transform: scale(1.1);
-}
+  }
+  .not__found:hover {
+    transform: scale(1.1);
+  }
   .title{
     font-weight: 700;
     font-size: 16px;

@@ -1,13 +1,20 @@
 <template>
   <div>
     <nav class="nav__container">
-      <p>🎬 The Movie Search App</p>
+      <p @click="goHome">🎬 The Movie Search App</p>
     </nav>
   </div>
 </template>
 <script>
+import router from '@/router';
+
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  methods: {
+    goHome(){
+      router.push('/');
+    }
+  }
 }
 </script>
 <style scoped>
@@ -22,5 +29,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
+    }
+
+    nav p{
+      cursor: pointer;
     }
 </style>

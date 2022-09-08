@@ -1,14 +1,10 @@
 <template>
   <div>
     <NavBar />
-    <!-- <div v-for="s in getSingleMovie" :key="s">
-      {{s}}
-    </div> -->
-    {{movie}}
     <div class="loader__container" v-if="isLoading">
       <div class="lds-dual-ring"></div>
     </div>
-    <div class="movie__container" v-else>
+    <div class="movie__container" v-if="movie">
       <div class="movie__image">
         <img :src=movie.Poster alt="movie_image">
       </div>
@@ -34,8 +30,16 @@
         </div>
         <div class="genre__container">
           <p class="genre">Genre: </p>
-            {{movie.Genre.split(',').join('')}}
-          </div>
+          <p class="genre__list" v-for="genre in movie.Genre.split(',')" :key="genre">
+            {{genre}}
+          </p>
+        </div>
+        <div class="imbd__container">
+          <p class="imbd">IMBD rating: </p>
+          <p class="rating">
+            {{movie.imdbRating}}  ⭐
+          </p>
+        </div>
         </div>
       </div>
     </div>
@@ -72,6 +76,8 @@ export default {
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    gap: 32px;
+    margin-top: 70px;
   }
 
   .movie__image img{
@@ -86,6 +92,8 @@ export default {
     border-radius: 50px;
     color: #C43838;
     background-color: transparent;
+    margin-bottom: 20px;
+    cursor: pointer;
   }
 
   .movie__title{
@@ -94,18 +102,20 @@ export default {
     line-height: 52px;
     letter-spacing: -0.02em;
     color: #FFFFFF;
+    margin-bottom: 20px;
   }
-  .movie__plot, .actors__container, .genre__container{
+  .movie__plot, .actors__container, .genre__container, .imbd__container{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 16px;
   }
 
-  .actors__container, .genre__container {
+  .actors__container, .genre__container, .imbd__container {
     justify-content: normal;
   }
 
-  .plot, .actors, .genre {
+  .plot, .actors, .genre, .imbd {
     font-weight: 400;
     font-size: 16px;
     line-height: 21px;
@@ -113,7 +123,7 @@ export default {
     margin-right: 12px;
   }
 
-  .plot__desc, .actors__list{
+  .plot__desc, .actors__list, .rating{
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
@@ -122,7 +132,6 @@ export default {
 
   .genre__list{
     padding: 8px 24px;
-    width: 84px;
     height: 32px;
     background: #373636;
     border-radius: 50px;
@@ -130,6 +139,7 @@ export default {
     font-size: 12px;
     line-height: 16px;
     color: rgba(255, 255, 255, 0.4);
+    margin-right: 8px;
   }
 
 </style>
