@@ -13,9 +13,6 @@ import router from '@/router';
 import { mapState } from 'vuex';
 import NavBar from './NavBar.vue';
 export default {
-    data: () => ({
-      // movieID: this.$route.params.movieID
-    }),
     name: 'SingleMovieComponent',
     components: { NavBar },
     computed: {

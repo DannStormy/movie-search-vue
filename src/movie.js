@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'http://www.omdbapi.com/';
+const url = 'https://www.omdbapi.com/';
 const key = 'fcc13d04';
 
 function search(title, page=1){

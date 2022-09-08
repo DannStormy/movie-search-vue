@@ -111,6 +111,9 @@ export default {
     font-weight: 400;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.5);
+    outline: none;
+  }
+  .form__container input:focus{
     outline: 1px solid #C53939;
   }
   .form__container button{
@@ -213,7 +216,29 @@ export default {
       transform: rotate(360deg);
     }
 }
+  .pages {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    margin: 30px 0;
+    width: 300px;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    cursor: pointer;
+    color: white;
+  }
   .active{
-      background: red
+      background: #C53939
   }
 </style>
