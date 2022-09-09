@@ -88,7 +88,6 @@ export default {
 
   .back {
     padding: 5.5px 24px;
-    width: 108px;
     height: 32px;
     border: 1px solid #C43838;
     border-radius: 50px;
