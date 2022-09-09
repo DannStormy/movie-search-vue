@@ -260,4 +260,14 @@ export default {
     color: #C53939;
     margin-top: 20px;
   }
+  @media screen and (max-width: 768px) {
+    .movies {
+      width: 100%;
+      justify-content: center;
+    }
+    .form__container{
+      width: 100%;
+      padding: 10px;
+    }
+  }
 </style>

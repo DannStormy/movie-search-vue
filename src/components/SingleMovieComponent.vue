@@ -145,5 +145,20 @@ export default {
     color: rgba(255, 255, 255, 0.4);
     margin-right: 8px;
   }
+  @media screen and (max-width: 768px) {
+    .movie__container {
+      flex-direction: column;
+      width: 100%;
+    }
+    .movie__image{
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+    .movie__info{
+      padding: 20px;
+    }
+  }
+
 
 </style>
