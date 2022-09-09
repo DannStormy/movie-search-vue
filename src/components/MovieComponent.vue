@@ -269,5 +269,8 @@ export default {
       width: 100%;
       padding: 10px;
     }
+    .pages{
+      justify-content: stretch;
+    }
   }
 </style>
