@@ -264,6 +264,7 @@ export default {
     .movies {
       width: 100%;
       justify-content: center;
+      gap: 10px;
     }
     .form__container{
       width: 100%;
