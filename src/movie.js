@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url = 'https://www.omdbapi.com/';
-const key = 'fcc13d04';
+const key = process.env.VUE_APP_API_KEY;
 
 function search(title, page=1){
   return axios.get(`${url}?apikey=${key}&s=${title}&page=${page}`);
